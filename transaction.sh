@@ -9,7 +9,7 @@ amount=$3
 timestamp=$(date '+%Y-%m-%d %H:%M:%S')
 
 # Log the transaction in transaction_log.txt
-echo "$timestamp | Account: $account_number | $transaction_type: ₹$amount" >> transaction_log.txt
+echo "$timestamp | Account: $account_number | $transaction_type: $amount" >> transaction_log.txt
 
 # Check if the transaction is a high-value withdrawal
 if [ "$transaction_type" == "Withdraw" ] && [ "$amount" -ge 50000 ]; then

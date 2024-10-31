@@ -1,2 +1,1 @@
-Username: john_doe | Account: 12345 | Balance: 1000
-Username: john_doe | Account: 12345 | Balance: 1000
+Username: john_e | Account: 44444 | Balance: 1000
