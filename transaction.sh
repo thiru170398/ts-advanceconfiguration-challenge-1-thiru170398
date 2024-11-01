@@ -6,12 +6,10 @@ transaction_type=$2
 amount=$3
 
 # Get the current timestamp
-timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+timestamp= #todo
 
 # Log the transaction in transaction_log.txt
-echo "$timestamp | Account: $account_number | $transaction_type: $amount" >> transaction_log.txt
+#todo
 
 # Check if the transaction is a high-value withdrawal
-if [ "$transaction_type" == "withdraw" ] && [ "$amount" -ge 50000 ]; then
-  echo "ALERT: High-value transaction detected! withdrawal: ₹$amount"
-fi
+#todo
