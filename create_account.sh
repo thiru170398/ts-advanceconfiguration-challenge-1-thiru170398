@@ -5,7 +5,7 @@ username=$1
 account_number=$2
 
 # Default balance for new accounts
-default_balance=
+default_balance= #todo
 
 # Check if account already exists in accounts.txt
 #todo
