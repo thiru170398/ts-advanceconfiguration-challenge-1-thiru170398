@@ -21,8 +21,8 @@ jobs:
           ./transaction.sh 67890 withdraw 60000
 
           # Check if transactions are logged correctly
-          grep "Account: 12345 | Deposit: 5000" transaction_log.txt || (echo "Deposit transaction logging failed!" && exit 1)
-          grep "Account: 67890 | Withdraw: 60000" transaction_log.txt || (echo "Withdraw transaction logging failed!" && exit 1)
+          grep "Account: 12345 | deposit: 5000" transaction_log.txt || (echo "deposit transaction logging failed!" && exit 1)
+          grep "Account: 67890 | withdraw: 60000" transaction_log.txt || (echo "withdraw transaction logging failed!" && exit 1)
 
           # Check for high-value transaction warning
           output=$(./transaction.sh 67890 withdraw 60000)
@@ -35,7 +35,7 @@ jobs:
           ./monitor_transactions.sh > monitor_output.txt
 
           # Check if the output includes the suspicious transaction
-          grep "Withdraw: 60000" monitor_output.txt || (echo "Monitoring script failed to detect suspicious transaction!" && exit 1)
+          grep "withdraw: 60000" monitor_output.txt || (echo "Monitoring script failed to detect suspicious transaction!" && exit 1)
 
       # Test 3: Account Creation
       - name: Test Account Creation
