@@ -6,6 +6,9 @@ jobs:
   banking-check:
     runs-on: ubuntu-latest
 
+    env:
+      SCORE: 0  # Initialize score
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -21,12 +24,15 @@ jobs:
           ./transaction.sh 67890 withdraw 60000
 
           # Check if transactions are logged correctly
-          grep "Account: 12345 | deposit: 5000" transaction_log.txt || (echo "deposit transaction logging failed!" && exit 1)
-          grep "Account: 67890 | withdraw: 60000" transaction_log.txt || (echo "withdraw transaction logging failed!" && exit 1)
-
-          # Check for high-value transaction warning
-          output=$(./transaction.sh 67890 withdraw 60000)
-          echo "$output" | grep "ALERT: High-value transaction detected!" || (echo "High-value withdrawal alert failed!" && exit 1)
+          if grep -q "Account: 12345 | deposit: 5000" transaction_log.txt && \
+             grep -q "Account: 67890 | withdraw: 60000" transaction_log.txt && \
+             ./transaction.sh 67890 withdraw 60000 | grep -q "ALERT: High-value transaction detected!"; then
+             echo "Test 1 passed: 10 marks awarded"
+             echo "10" >> score.txt
+          else
+             echo "Test 1 failed: No marks awarded"
+             echo "0" >> score.txt
+          fi
 
       # Test 2: Monitoring Suspicious Transactions
       - name: Test Monitoring Suspicious Transactions
@@ -35,19 +41,42 @@ jobs:
           ./monitor_transactions.sh > monitor_output.txt
 
           # Check if the output includes the suspicious transaction
-          grep "withdraw: 60000" monitor_output.txt || (echo "Monitoring script failed to detect suspicious transaction!" && exit 1)
+          if grep -q "withdraw: 60000" monitor_output.txt; then
+             echo "Test 2 passed: 10 marks awarded"
+             echo "10" >> score.txt
+          else
+             echo "Test 2 failed: No marks awarded"
+             echo "0" >> score.txt
+          fi
 
       # Test 3: Account Creation
       - name: Test Account Creation
         run: |
-          ./create_account.sh john_doe 99999
+          ./create_account.sh john_mark 99999
 
           # Check if the account is created in accounts.txt with the correct default balance
-          grep "Username: john_mark | Account: 99999 | Balance: 1000" accounts.txt || (echo "Account creation failed!" && exit 1)
+          if grep -q "Username: john_mark | Account: 99999 | Balance: 1000" accounts.txt; then
+             echo "Test 3 passed: 10 marks awarded"
+             echo "10" >> score.txt
+          else
+             echo "Test 3 failed: No marks awarded"
+             echo "0" >> score.txt
+          fi
 
       # Final Output Verification
       - name: Verify Output Files
         run: |
           # Verify that transaction_log.txt and accounts.txt are not empty after running tests
-          [ -s transaction_log.txt ] || (echo "transaction_log.txt is empty!" && exit 1)
-          [ -s accounts.txt ] || (echo "accounts.txt is empty!" && exit 1)
+          if [ -s transaction_log.txt ] && [ -s accounts.txt ]; then
+             echo "Final Verification passed: 10 marks awarded"
+             echo "10" >> score.txt
+          else
+             echo "Final Verification failed: No marks awarded"
+             echo "0" >> score.txt
+          fi
+
+      # Calculate Total Score
+      - name: Calculate Total Score
+        run: |
+          total_score=$(awk '{sum+=$1} END {print sum}' score.txt)
+          echo "Total Score: $total_score / 40"
