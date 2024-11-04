@@ -40,10 +40,10 @@ jobs:
       # Test 3: Account Creation
       - name: Test Account Creation
         run: |
-          ./create_account.sh john_doe 12345
+          ./create_account.sh john_doe 99999
 
           # Check if the account is created in accounts.txt with the correct default balance
-          grep "Username: jamy_e | Account: 23231 | Balance: 1000" accounts.txt || (echo "Account creation failed!" && exit 1)
+          grep "Username: john_mark | Account: 99999 | Balance: 1000" accounts.txt || (echo "Account creation failed!" && exit 1)
 
       # Final Output Verification
       - name: Verify Output Files
