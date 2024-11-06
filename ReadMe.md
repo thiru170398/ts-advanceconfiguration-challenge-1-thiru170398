@@ -39,7 +39,7 @@ Open the repository in GitHub Codespaces:
 
 # Tasks
 
-1. Create a Banking **Transaction Script** (15 marks)
+1. ## Task1: Create a Banking **Transaction Script** (15 marks)
 
 Write a transaction.sh script that Takes three input parameters:
 
@@ -67,7 +67,7 @@ bash
 
 
 
-2. **Monitor Transaction** Logs for Suspicious Activity (10 marks)
+2. ## Task2: **Monitor Transaction** Logs for Suspicious Activity (10 marks)
 
 Create a monitor_transactions.sh script that:
         * Scans the transaction_log.txt.
@@ -85,7 +85,7 @@ bash
 
 
 
-3. Automate Bank Account Creation
+3. ## Task3: Automate Bank Account Creation(15 marks)
 
 Write a **create_account.sh** script that: (15 marks)
 
