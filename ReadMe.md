@@ -38,7 +38,8 @@ Open the repository in GitHub Codespaces:
   * Launch a new Codespace or connect to an existing one.
 
 # Tasks
-1. Create a Banking Transaction Script
+
+1. Create a Banking **Transaction Script** (15 marks)
 
 Write a transaction.sh script that Takes three input parameters:
 
@@ -50,8 +51,8 @@ Updates the transaction_log.txt with the details of each transaction.
 
 Example log entry:
 
-      2024-10-26 13:45:12 | Account: 12345 | Deposit: 5000
-      2024-10-26 14:10:32 | Account: 67890 | Withdraw: 2000
+      2024-10-26 13:45:12 | Account: 12345 | deposit: 5000
+      2024-10-26 14:10:32 | Account: 67890 | withdraw: 2000
 
 
 If a withdrawal exceeds ₹50,000, print a warning:
@@ -66,7 +67,7 @@ bash
 
 
 
-2. Monitor Transaction Logs for Suspicious Activity
+2. **Monitor Transaction** Logs for Suspicious Activity (10 marks)
 
 Create a monitor_transactions.sh script that:
         * Scans the transaction_log.txt.
@@ -74,7 +75,7 @@ Create a monitor_transactions.sh script that:
 
 Sample output:
 
-       Suspicious Transactions:  2024-10-26 14:10:32 | Account: 67890 | Withdraw: 50000
+       Suspicious Transactions:  2024-10-26 14:10:32 | Account: 67890 | withdraw: 50000
 
 
 Make the script executable:
@@ -86,7 +87,7 @@ bash
 
 3. Automate Bank Account Creation
 
-Write a create_account.sh script that:
+Write a **create_account.sh** script that: (15 marks)
 
  * Takes a username and account number as input.
  * Creates a new user account with the given username. 
